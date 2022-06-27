@@ -10,6 +10,34 @@
       content="Her türlü dilekçe için"
     />
     <link rel="apple-touch-icon" href="" />
+    <script src="https://smtpjs.com/v3/smtp.js"></script>  
+  <style>
+    .field {
+  margin-bottom: 10px;
+}
+
+.field label {
+  display: block;
+  font-size: 12px;
+  color: #777;
+}
+
+.field input {
+  display: block;
+  min-width: 250px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+input[type="submit"] {
+  display: block;
+  padding: 6px 30px;
+  font-size: 14px;
+  background-color: #4460AA;
+  color: #fff;
+  border: none
+}
+  </style>
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
@@ -31,7 +59,11 @@
 <link href="/css/animate.css" rel="stylesheet" media="screen">
 <link href="/css/owl.theme.css" rel="stylesheet">
 <link href="/css/owl.carousel.css" rel="stylesheet">
- 
+ <!-- Event snippet for Website traffic conversion page -->
+<script>
+  gtag('event', 'conversion', {'send_to': 'AW-965542892/B7AVCICqhckDEOyHtMwD'});
+</script>
+
 <link href="/css/styles.css" rel="stylesheet" media="screen">    
 
 <!-- Google Fonts --> 
@@ -257,23 +289,23 @@
                 <div class="col-sm-8 col-md-8">
                     <div class="contact-form">
                    
-                        <form class="contact-formm">
+                        <form class="contact-formm" id="form">
                             <div class="form-group">
-                                <input type="text" id="name" class="form-control" placeholder="İsim Soyisim" required>
+                                <input type="text" name="name" id="name" class="form-control" placeholder="İsim Soyisim" required>
                             </div>
                             <div class="form-group">
-                                <input type="email" id="email" class="form-control" placeholder="Email" required>
+                                <input type="email" name="email" id="email" class="form-control" placeholder="Email" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" id="subject" class="form-control" placeholder="Dilekçenin Konusu" required>
+                                <input type="text" name="dilekceninkonusu" id="dilekceninkonusu" class="form-control" placeholder="Dilekçenin Konusu" required>
                             </div>
                             <div class="form-group">
-                                <input type="text" id="telno" class="form-control" placeholder="Telefon numaranız" required>
+                                <input type="text" name="telno" id="telno" class="form-control" placeholder="Telefon numaranız" required>
                             </div>
                             <div class="form-group">
-                                <textarea name="message" id="message" class="form-control" rows="8" placeholder="Mesajınız" required></textarea>
+                                <textarea name="mesaj" id="mesaj" class="form-control" rows="8" placeholder="Mesajınız" required></textarea>
                             </div>
-                            <button type="submit" class="submit btn btn-primary">Mesaj Gönder</button>
+                            <button type="submit" id="button" class="submit btn btn-primary">Mesaj Gönder</button>
                         </form>
                     </div>
                 </div>
@@ -296,10 +328,25 @@
     </div>  
   </div>  
 </footer>
+<!-- Contact form -->
+
+
+
+<script type="text/javascript"
+  src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<script type="text/javascript">
+  emailjs.init('HnjkR7uL8g2vA0eH-')
+</script>
+
+<!-- Contact form -->
+
 
 
 <div id="root"></div>
 	<!-- javascript files -->
+
+  
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/custom.js"></script>
@@ -310,8 +357,39 @@
 	<script type="text/javascript">
 	$(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) { event.preventDefault(); $(this).ekkoLightbox(); }); 
 	</script>
+
 	<script>
 		new WOW().init();
+    const btn = document.getElementById('button');
+    const isim = document.getElementById('name');
+    const numara = document.getElementById('telno');
+    const konu = document.getElementById('dilekceninkonusu');
+    const mesaj = document.getElementById('mesaj');
+    const mail = document.getElementById('email');
+
+document.getElementById('form')
+ .addEventListener('submit', function(event) {
+   event.preventDefault();
+
+   btn.value = 'Sending...';
+
+   const serviceID = 'default_service';
+   const templateID = 'template_xyeycpd';
+
+   emailjs.sendForm(serviceID, templateID, this)
+    .then(() => {
+      btn.value = 'Send Email';
+      alert('Mesajınız gönderildi!');
+      isim.value='';
+      numara.value='';
+      mail.value='';
+      konu.value='';
+      mesaj.value='';
+    }, (err) => {
+      btn.value = 'Send Email';
+      alert(JSON.stringify(err));
+    });
+});
 	</script>
     <!--
       This HTML file is a template.
@@ -323,6 +401,16 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <!-- Global site tag (gtag.js) - Google Ads: 965542892 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=AW-965542892"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'AW-965542892');
+</script>
+
   </body>
   
 </html>
